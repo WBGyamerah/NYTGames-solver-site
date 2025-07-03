@@ -2,7 +2,7 @@
 A react app to host the nyt game solvers I've made 
 
 ## Process
-I started by importing the logos that I would use, and created a favicon
+I started by importing the logos that I would use downloaded from icons8, and created a favicon us favicon generator which also provided the manifest
 
 ## Resources
 https://icons8.com for Icons
