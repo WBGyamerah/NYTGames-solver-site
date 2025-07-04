@@ -2,11 +2,11 @@ import React from "react";
 import { styled } from '@mui/material/styles';
 //CSS found and copied from the website
 
-const BasicButton = styled('button')(({ theme }) => ({
+const BasicButtonStyle = styled('button')(({ theme }) => ({
   display: 'flex',
-  flexdirection: 'column',
-  alignitems: 'center',
-  justifycontent: 'center',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.primary.contrastText,
   border: `1.5px solid ${theme.custom.grays.border}`,
@@ -24,12 +24,12 @@ const BasicButton = styled('button')(({ theme }) => ({
   },
 }));
 
-const Button = ({ children, onClick }) => {
+const BasicButton = ({ children, onClick }) => {
     return(
-     <BasicButton onClick={onClick}>
+     <BasicButtonStyle onClick={onClick}>
         {children}
-     </BasicButton>
+     </BasicButtonStyle>
     );
 }
 
-export default Button;
+export default BasicButton;
