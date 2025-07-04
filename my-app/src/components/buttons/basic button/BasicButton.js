@@ -8,7 +8,7 @@ const BasicButtonStyle = styled('button')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   backgroundColor: theme.palette.primary.main,
-  color: theme.palette.primary.contrastText,
+  color: theme.palette.text.primary,
   border: `1.5px solid ${theme.custom.grays.border}`,
   borderRadius: '44px',
   padding: '12px 100px',

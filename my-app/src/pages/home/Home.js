@@ -1,4 +1,5 @@
 import React from "react";
+import Header from "../../components/header/Header.js";
 import GamesCardList from "../../components/card/GamesCardList.js";
 import { useTheme } from "@mui/material/styles";
 import spellingbeeIcon from '../../assets/logos/Spelling Bee Logo.png';
@@ -38,9 +39,7 @@ const HomePage = () => {
 
     return (
         <div>
-            <header>
-                <h1>NYT Solver</h1>
-            </header>
+            <Header/>
             <main>
                 <GamesCardList GamesCards={gameCards} />
             </main>
