@@ -30,7 +30,7 @@ const GamesCard = ({ link, headerColour, imglink, icon, title, desc }) => {
             <a href={link} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <CardHeader headercolour = {headerColour}>
                     <Tooltip title={`Logo from ${imglink}`}>
-                        <img src={icon} style={{ width: '95px', height: '95px' }}></img>
+                        <img src={icon} alt={title} style={{ width: '95px', height: '95px' }}></img>
                     </Tooltip>
                     <Typography variant="h2">{title}</Typography>
                 </CardHeader>

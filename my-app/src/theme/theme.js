@@ -7,21 +7,22 @@ const theme =  createTheme({
   palette: {
     primary: {
       main: '#FFF',
+      contrastText: '#333',
     },
     text: {
-      primary: '#333',
       secondary: '#959595',
     },
   },
   custom:{
     games: {
       wordle: '#E3E3E1',
-      letterboxed: '#FC716B',
-      spellingbee: '#F7DA21',
+      letterBoxed: '#FC716B',
+      spellingBee: '#F7DA21',
     },
     grays:{
       border: '#DCDCDC',
       hover: '#FAFAFA',
+      menuHover: '#4C4C4C',
     },
   },
   typography: {

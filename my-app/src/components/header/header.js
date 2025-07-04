@@ -1,16 +1,19 @@
 import React from "react";
 import NYTlogo from '../../assets/logos/NYT Logo.svg'
+import MenuButton from "../buttons/menu button/MenuButton.js";
 import { styled } from '@mui/material/styles';
 import { Tooltip, Typography } from "@mui/material";
-import theme from "../../theme/theme";
 //CSS found and copied from the website
 
 const HeaderStyle = styled('header')(({ theme }) => ({
+    position: 'fixed',
     border: `1.5px solid ${theme.custom.grays.border}`,
+    backgroundColor: theme.palette.primary.main,
     display: 'flex',
     alignItems: 'center',
-    padding: '0 16px',
     height: '56px',
+    width: '100%',
+    zIndex: '100',
 }));
 
 const Title = styled('a')({
@@ -18,15 +21,6 @@ const Title = styled('a')({
     alignItems: 'center', 
     textDecoration: 'none',
 });
-
-//const Divider = styled('h1')(({theme}) => ({
-//    color: theme.palette.text.secondary,
-//    fontWeight: '1',
-//    lineHeight: '1',
-//    marginRight: '5px',
-//    fontSize: '28px',
-//}));
-//Didn't work wouldnt place centrally
 
 const Divider = styled('div')(({ theme }) => ({
   width: '1.5px',
@@ -38,9 +32,10 @@ const Divider = styled('div')(({ theme }) => ({
 const Header = ({ onClick }) => {
     return(
         <HeaderStyle>
+            <MenuButton/>
             <Title href="/home" style={{ textDecoration: 'none', color: 'inherit'}}>
                 <Tooltip title={`Logo from "https://icons8.com/icon/wIanlRMWltQd/new-york-times"`}>
-                    <img src={NYTlogo} style={{width: '32px', height:'32px'}}/>
+                    <img src={NYTlogo} alt="NYT-Logo" style={{width: '30px', height:'30px'}}/>
                 </Tooltip>
                 <Divider/>
                 <Typography variant="h1">Solver</Typography>

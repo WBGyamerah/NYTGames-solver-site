@@ -12,7 +12,7 @@ const HomePage = () => {
     const gameCards = [
     {
         link: "/SpellingBee",
-        headerColour: theme.custom.games.spellingbee,
+        headerColour: theme.custom.games.spellingBee,
         imglink: "https://icons8.com/icon/Nwd9HmGAlc96/bee",
         icon: spellingbeeIcon,
         title: "Spelling Bee",
@@ -28,7 +28,7 @@ const HomePage = () => {
     },
     {
         link: "/LetterBoxed",
-        headerColour: theme.custom.games.letterboxed,
+        headerColour: theme.custom.games.letterBoxed,
         imglink: "https://icons8.com/icon/Nwd9HmGAlc96/bee",
         icon: letterboxedIcon,
         title: "LetterBoxed",
@@ -40,7 +40,7 @@ const HomePage = () => {
     return (
         <div>
             <Header/>
-            <main>
+            <main style={{ padding: '56px'}}>
                 <GamesCardList GamesCards={gameCards} />
             </main>
         </div>
