@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../../components/buttons/basic button/BasicButton";
 
 const HomePage = () => {
     return (
@@ -7,7 +8,7 @@ const HomePage = () => {
                 <h1>NYT Solver</h1>
             </header>
             <main>
-                <p> Hello </p>
+                <Button>Play</Button>
             </main>
         </div>
     );

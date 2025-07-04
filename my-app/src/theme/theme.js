@@ -1,0 +1,50 @@
+// Screenshotted and used the colour picker tool to get the colours
+//I searched up which fonts are used on the website and from http://quora.com/Which-typefaces-does-The-New-York-Times-use found that the headings are cheltenham and georgia for the body
+//The New York Times uses a custom cheltenham font, so I used a similar looking font Della Respira
+import { createTheme } from '@mui/material/styles';
+
+const theme =  createTheme({
+  palette: {
+    primary: {
+      main: '#FFF',
+    },
+    text: {
+      primary: '#333',
+      secondary: '#959595',
+    },
+  },
+  custom:{
+    games: {
+      wordle: '#E3E3E1',
+      letterboxed: '#FC716B',
+      spellingbee: '#F7DA21',
+    },
+    grays:{
+      border: '#DCDCDC',
+      hover: '#FAFAFA',
+    },
+  },
+  typography: {
+    fontFamily: 'Georgia, serif', // default
+
+    h1: {
+      fontFamily: "'Della Respira', serif",
+      fontSize: '2rem',
+      fontWeight: 700,
+      lineHeight: '2.5rem',
+    },
+    h2: {
+      fontFamily: "'Della Respira', serif",
+      fontSize: '1.5rem',
+      fontWeight: 500,
+      lineHeight: '2.5rem',
+    },
+    body1: {
+      fontSize: '1rem',
+      fontWeight: 400,
+      lineHeight: '1.75rem',
+    },
+  },
+});
+
+export default theme;
