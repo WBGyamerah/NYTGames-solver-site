@@ -45,6 +45,11 @@ const theme =  createTheme({
       fontWeight: 400,
       lineHeight: '1.75rem',
     },
+    sidebar:{
+      fontSize: '1rem',
+      fontWeight: 700,
+      lineHeight: '1.75rem',
+    },
   },
 });
 

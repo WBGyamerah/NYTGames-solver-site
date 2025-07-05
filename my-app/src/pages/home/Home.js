@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../../components/header/Header.js";
 import GamesCardList from "../../components/card/GamesCardList.js";
 import { useTheme } from "@mui/material/styles";
 import spellingbeeIcon from '../../assets/logos/Spelling Bee Logo.png';
@@ -38,12 +37,7 @@ const HomePage = () => {
 
 
     return (
-        <div>
-            <Header/>
-            <main style={{ padding: '56px'}}>
-                <GamesCardList GamesCards={gameCards} />
-            </main>
-        </div>
+        <GamesCardList GamesCards={gameCards} />
     );
 }
 

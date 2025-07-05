@@ -7,6 +7,9 @@ import { Tooltip, Typography } from "@mui/material";
 
 const HeaderStyle = styled('header')(({ theme }) => ({
     position: 'fixed',
+     top: 0,
+    left: 0,
+    right: 0,
     border: `1.5px solid ${theme.custom.grays.border}`,
     backgroundColor: theme.palette.primary.main,
     display: 'flex',
@@ -29,10 +32,10 @@ const Divider = styled('div')(({ theme }) => ({
   marginRight: '5px',
 }));
 
-const Header = ({ onClick }) => {
+const Header = ({ onMenuClick }) => {
     return(
         <HeaderStyle>
-            <MenuButton/>
+            <MenuButton onClick={onMenuClick}/>
             <Title href="/home" style={{ textDecoration: 'none', color: 'inherit'}}>
                 <Tooltip title={`Logo from "https://icons8.com/icon/wIanlRMWltQd/new-york-times"`}>
                     <img src={NYTlogo} alt="NYT-Logo" style={{width: '30px', height:'30px'}}/>
