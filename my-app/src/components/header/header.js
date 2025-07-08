@@ -36,7 +36,7 @@ const Header = ({ onMenuClick }) => {
     return(
         <HeaderStyle>
             <MenuButton onClick={onMenuClick}/>
-            <Title href="/home" style={{ textDecoration: 'none', color: 'inherit'}}>
+            <Title href="/" style={{ textDecoration: 'none', color: 'inherit'}}>
                 <Tooltip title={`Logo from "https://icons8.com/icon/wIanlRMWltQd/new-york-times"`}>
                     <img src={NYTlogo} alt="NYT-Logo" style={{width: '30px', height:'30px'}}/>
                 </Tooltip>

@@ -18,15 +18,24 @@ const theme =  createTheme({
       wordle: '#E3E3E1',
       letterBoxed: '#FC716B',
       spellingBee: '#F7DA21',
+      strands: '#C0DDD9',
+      sudoku: '#FB9B00'
     },
     grays:{
       border: '#DCDCDC',
       hover: '#FAFAFA',
       menuHover: '#4C4C4C',
     },
+    sudoku: {
+      border: '#979797',
+      filled: '#DFDFDF',
+      sameNumber: '#FEC468',
+      impacted: '#F9EAC2',
+      warning: '#FF4B56',
+    }
   },
   typography: {
-    fontFamily: 'Georgia, serif', // default
+    fontFamily: 'Georgia Pro serif', // default
 
     h1: {
       fontFamily: "'Della Respira', serif",

@@ -5,6 +5,8 @@ import spellingbeeIcon from '../../assets/logos/Spelling Bee Logo.png';
 import wordleIcon from '../../assets/logos/Wordle Logo.png';
 import letterboxedIcon from '../../assets/logos/LetterBoxed Logo.svg';
 import { useTheme } from "@mui/material";
+import sudokuIcon from '../../assets/logos/Sudoku Logo.png';
+import strandsIcon from '../../assets/logos/Strands Logo.png';
 
 const SidebarStyle = styled('div')(({ theme, isOpen }) => ({
     position: 'fixed',
@@ -22,10 +24,13 @@ const SidebarItems = styled("div")({
     flexDirection: "column",
 });
 
-const Items = styled('div')(({ theme, gameColour }) => ({
+const Items = styled('a')(({ theme, gameColour }) => ({
+    textDecoration: 'none', 
+    color: 'inherit',
     display: 'flex',
     alignItems: 'center', 
     gap: '8px',
+    cursor: 'pointer',
     position: 'relative',
     borderBottom: `1.5px solid ${theme.custom.grays.border}`,
     padding: '9px',
@@ -68,6 +73,16 @@ const Sidebar = ({ isOpen }) => {
                 <Items href = "/LetterBoxed" gameColour={theme.custom.games.letterBoxed} style={{paddingLeft:'18px'}}>
                     <img src={letterboxedIcon} alt='LetterBoxed' style={{ width: '20px', height: '20px' }}></img>
                     <Typography variant="sidebar">LetterBoxed</Typography>
+                </Items>
+
+                <Items href = "/Strands" gameColour={theme.custom.games.strands} style={{paddingLeft:'18px'}}>
+                    <img src={strandsIcon} alt='Strands' style={{ width: '20px', height: '20px' }}></img>
+                    <Typography variant="sidebar">Strands</Typography>
+                </Items>
+
+                <Items href = "/Sudoku" gameColour={theme.custom.games.sudoku} style={{paddingLeft:'18px'}}>
+                    <img src={sudokuIcon} alt='Sudoku' style={{ width: '20px', height: '20px' }}></img>
+                    <Typography variant="sidebar">Sudoku</Typography>
                 </Items>
             </SidebarItems>
         </SidebarStyle>
