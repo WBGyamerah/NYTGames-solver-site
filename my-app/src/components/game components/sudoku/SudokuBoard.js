@@ -2,6 +2,7 @@
 import React, { useState, useImperativeHandle, forwardRef } from "react";
 import { styled } from '@mui/material/styles';
 import { Table, TableBody, TableCell, TableContainer, TableRow, TextField } from "@mui/material";
+import { solveBoard } from "./SudokuSolver";
 
 const Board = styled(Table)(({theme}) => ({
     border: `7px solid black`,  
@@ -80,17 +81,31 @@ const SudokuBoard = forwardRef((props, ref) => {
         setErrors(updatedErrors);
     };
 
-    useImperativeHandle(ref, () => ({ //Causes this method to be visible to the parent element (SudokuPage)
+    useImperativeHandle(ref, () => ({
       insertValue: (value) => {
         const { row, col } = selectedCell;
 
-        if(value === 'C'){
+        if (value === 'S') {
+          if (isErrorsEmpty(errors)) {
+            const tempBoard = board.map(row => [...row]);
+
+            if (solveBoard(tempBoard)) {
+              console.log("Solved board:");
+              setBoard(tempBoard);
+            } else {
+              alert('Unable to solve the puzzle.');
+            }
+          } else {
+            alert('Please fix the highlighted errors before solving.');
+          }
+        } else if (value === 'C') {
           clearBoard();
-        }else if (row !== null && col !== null) {
+        } else if (row !== null && col !== null) {
           handleInput(row, col, value);
         }
-    },
+      },
     }));
+
 
     const handleCellClick = (row, col) => {
       setSelectedCell({ row, col });
@@ -123,10 +138,10 @@ const SudokuBoard = forwardRef((props, ref) => {
           const startCol = Math.floor(col / 3) * 3; //starting col of the box
           
           for (let r = startRow; r < startRow + 3; r++) { //loops through box
-          for (let c = startCol; c < startCol + 3; c++) {
-          if ((r !== row || c !== col) && board[r][c] === value) {
-            tempErrors[row][col] = true;
-            tempErrors[r][c] = true;
+            for (let c = startCol; c < startCol + 3; c++) {
+              if ((r !== row || c !== col) && board[r][c] === value) {
+                tempErrors[row][col] = true;
+                tempErrors[r][c] = true;
               }
             }
           }
@@ -143,6 +158,10 @@ const SudokuBoard = forwardRef((props, ref) => {
       setBoard(emptyBoard);
       setUserInput(emptyInput);
       setErrors(emptyErrors);
+    };
+
+    const isErrorsEmpty = (board) => {
+      return board.every(row => row.every(cell => cell === false));
     };
 
     return(

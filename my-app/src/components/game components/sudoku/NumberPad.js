@@ -24,7 +24,11 @@ const NumberPadButton = styled('button')(({ theme }) => ({
     fontSize: '30px', 
     fontWeight: '700',
     cursor: 'pointer',
-    minWidth: '80px'
+    minWidth: '80px',
+
+    '&:active': {
+      backgroundColor: theme.palette.primary.main,
+    },
 }));
 
 const NumberPad = ({ onPadClick }) => {
@@ -38,7 +42,7 @@ const NumberPad = ({ onPadClick }) => {
                 </NumberPadButton>
             ))}
             <NumberPadButton style={{width:'128px'}} key={'C'} onClick={() => onPadClick(String('C'))}>Clear</NumberPadButton>
-            <NumberPadButton style={{width:'128px'}}>Solve</NumberPadButton>
+            <NumberPadButton style={{width:'128px'}} key={'S'} onClick={() => onPadClick(String('S'))}>Solve</NumberPadButton>
         </NumberPadStyle>
     );
 };
