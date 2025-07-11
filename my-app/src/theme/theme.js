@@ -25,6 +25,8 @@ const theme =  createTheme({
       border: '#DCDCDC',
       hover: '#FAFAFA',
       menuHover: '#4C4C4C',
+      spellingBeeHex: '#E7E7E7',
+      wordleFilled: '#878A8C',
     },
     sudoku: {
       border: '#979797',

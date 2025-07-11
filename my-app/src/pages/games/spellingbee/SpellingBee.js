@@ -4,7 +4,7 @@ import { useTheme } from "@mui/material/styles";
 const SpellingBeePage = () => {
     const theme = useTheme();
     return (
-        <h1>Hi</h1>
+        <h1> hi </h1>
     );
 }
 

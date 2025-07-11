@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableContainer, TableRow, TextField } from
 import { solveBoard } from "./SudokuSolver";
 
 const Board = styled(Table)(({theme}) => ({
-    border: `7px solid black`,  
+    border: `7px solid ${theme.palette.primary.main}`,  
     width: '550px', 
     height: '550px',
     tableLayout: 'fixed',
@@ -88,7 +88,6 @@ const SudokuBoard = forwardRef((props, ref) => {
         if (value === 'S') {
           if (isErrorsEmpty(errors)) {
             const tempBoard = board.map(row => [...row]);
-
             if (solveBoard(tempBoard)) {
               console.log("Solved board:");
               setBoard(tempBoard);

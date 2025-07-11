@@ -9,10 +9,9 @@ Originally I was gonna start with spelling bee, but I've decide to start with su
 ## Resources
 https://icons8.com for Icons
 https://realfavicongenerator.net for the Favicons
-
-<a target="_blank" href="https://icons8.com/icon/wIanlRMWltQd/new-york-times">New York Times</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> NYT logo
-<a target="_blank" href="https://icons8.com/icon/Yk8IaKHvWIND/box">Box</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> LetterBoxed logo
-<a target="_blank" href="https://icons8.com/icon/Nwd9HmGAlc96/bee">Bee</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> Spelling Bee logo
-<a target="_blank" href="https://icons8.com/icon/60598/data-grid">Data Grid</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> Wordle logo
-<a target="_blank" href="https://icons8.com/icon/113694/sudoku">Sudoku</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> Strands logo
+https://icons8.com/icon/wIanlRMWltQd/new-york-times NYT logo
+https://icons8.com/icon/Yk8IaKHvWIND/box LetterBoxed logo
+https://icons8.com/icon/Nwd9HmGAlc96/bee Spelling Bee logo
+https://icons8.com/icon/60598/data-grid Wordle logo
+https://icons8.com/icon/113694/sudoku Strands logo
 
