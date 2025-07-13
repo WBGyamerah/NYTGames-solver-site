@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableContainer, TableRow, TextField } from
 import { solveBoard } from "./SudokuSolver";
 
 const Board = styled(Table)(({theme}) => ({
-    border: `7px solid ${theme.palette.primary.main}`,  
+    border: `7px solid ${theme.palette.primary.contrastText}`,  
     width: '550px', 
     height: '550px',
     tableLayout: 'fixed',
@@ -62,9 +62,13 @@ const Warning = styled('div')(({theme}) => ({
 }));
 
 const SudokuBoard = forwardRef((props, ref) => {
-    const [board, setBoard] = useState(Array(9).fill(null).map(() => Array(9).fill(''))); //Creates an empty 9x9 2d array
-    const [userInput, setUserInput] = useState(Array(9).fill(null).map(() => Array(9).fill(false))); //Stores whether a cell is user input or not, used to change cell colour
-    const [errors, setErrors] = useState(Array(9).fill(null).map(() => Array(9).fill(false)));
+    const rows = 9;
+    const cols = 9;
+    const sRows = 3; //stores the nu7mber of rows in the mini square
+    const sCols = 3; //stores the nu7mber of cols in the mini square
+    const [board, setBoard] = useState(Array(rows).fill(null).map(() => Array(cols).fill(''))); //Creates an empty 9x9 2d array
+    const [userInput, setUserInput] = useState(Array(rows).fill(null).map(() => Array(cols).fill(false))); //Stores whether a cell is user input or not, used to change cell colour
+    const [errors, setErrors] = useState(Array(rows).fill(null).map(() => Array(cols).fill(false)));
     const [selectedCell, setSelectedCell] = useState({ row: null, col: null });
 
     const handleInput = (row, col, value) => {
@@ -111,15 +115,15 @@ const SudokuBoard = forwardRef((props, ref) => {
     };
 
     const getErrors = (board) => { //Loops through th whole board to highlight errors
-      const tempErrors = Array(9).fill(null).map(() => Array(9).fill(false)); 
+      const tempErrors = Array(rows).fill(null).map(() => Array(cols).fill(false)); 
       
-      for(let row = 0; row < 9; row++){
-        for(let col = 0; col < 9; col++){
+      for(let row = 0; row < rows; row++){
+        for(let col = 0; col < cols; col++){
           const value = board[row][col];
 
           if (!value) continue;
           
-          for(let y = 0; y < 9; y++){
+          for(let y = 0; y < cols; y++){
             if(y !== col && board[row][y] === value){
               tempErrors[row][col] = true;
               tempErrors[row][y] = true;
@@ -133,11 +137,11 @@ const SudokuBoard = forwardRef((props, ref) => {
             }
           }
 
-          const startRow = Math.floor(row / 3) * 3; //starting row of the box
-          const startCol = Math.floor(col / 3) * 3; //starting col of the box
+          const startRow = Math.floor(row / sRows) * sRows; //starting row of the box
+          const startCol = Math.floor(col / sCols) * sCols; //starting col of the box
           
-          for (let r = startRow; r < startRow + 3; r++) { //loops through box
-            for (let c = startCol; c < startCol + 3; c++) {
+          for (let r = startRow; r < startRow + sRows; r++) { //loops through box
+            for (let c = startCol; c < startCol + sCols; c++) {
               if ((r !== row || c !== col) && board[r][c] === value) {
                 tempErrors[row][col] = true;
                 tempErrors[r][c] = true;
@@ -150,9 +154,9 @@ const SudokuBoard = forwardRef((props, ref) => {
     };
 
     const clearBoard = () => {
-      const emptyBoard = Array(9).fill(null).map(() => Array(9).fill(''));
-      const emptyInput = Array(9).fill(null).map(() => Array(9).fill(false));
-      const emptyErrors = Array(9).fill(null).map(() => Array(9).fill(false));
+      const emptyBoard = Array(rows).fill(null).map(() => Array(cols).fill(''));
+      const emptyInput = Array(rows).fill(null).map(() => Array(cols).fill(false));
+      const emptyErrors = Array(rows).fill(null).map(() => Array(cols).fill(false));
 
       setBoard(emptyBoard);
       setUserInput(emptyInput);
@@ -179,7 +183,7 @@ const SudokuBoard = forwardRef((props, ref) => {
                         onClick={() => handleCellClick(rowIndex, colIndex)}
                         sameRow={selectedCell.row === rowIndex}
                         sameCol={selectedCell.col === colIndex}
-                        sameBox={Math.floor(selectedCell.row / 3) === Math.floor(rowIndex / 3) && Math.floor(selectedCell.col / 3) === Math.floor(colIndex / 3)}
+                        sameBox={Math.floor(selectedCell.row / sRows) === Math.floor(rowIndex / sRows) && Math.floor(selectedCell.col / sCols) === Math.floor(colIndex / sCols)}
                         sameValue={selectedCell.row !== null && selectedCell.col !== null && board[rowIndex][colIndex] === board[selectedCell.row][selectedCell.col] && board[selectedCell.row][selectedCell.col] !== ''}>
                             <InnerCell>
                               <TextField

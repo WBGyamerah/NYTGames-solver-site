@@ -26,7 +26,6 @@ const theme =  createTheme({
       hover: '#FAFAFA',
       menuHover: '#4C4C4C',
       spellingBeeHex: '#E7E7E7',
-      wordleFilled: '#878A8C',
     },
     sudoku: {
       border: '#979797',
@@ -34,6 +33,13 @@ const theme =  createTheme({
       sameNumber: '#FEC468',
       impacted: '#F9EAC2',
       warning: '#FF4B56',
+    },
+    wordle: {
+      filled: '#878A8C',
+      gray: '#787C7E',
+      yellow: '#C9B458',
+      green: '#6AAA64',
+      keyPad: '#D3D6DA',
     }
   },
   typography: {

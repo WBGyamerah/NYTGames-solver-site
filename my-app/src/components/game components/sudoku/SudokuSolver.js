@@ -1,19 +1,32 @@
 //Learned how to code this from https://www.youtube.com/watch?v=eAFcj_2quWI&ab_channel=Insidecode
-
 export function solveBoard(board){
-    const isValid = (board, row, col, value) => {
-        for(let z = 0; z < 9; z++){
-            //loops through row, col, then same box
-            if(board[row][z] === value || board[z][col]=== value || board[3 * Math.floor(row / 3) + Math.floor(z / 3)][3 * Math.floor(col / 3) + z % 3] === value){
-                return false;
-            }
-        }
-        return true;
+  const boardSize = 9;
+  const rows = 9;
+  const cols = 9;
+  const sRows = 3; //stores the number of rows in the mini square
+  const sCols = 3; //stores the number of cols in the mini square
+  const isValid = (board, row, col, value) => {
+    for (let i = 0; i < boardSize; i++) {
+      if (board[row][i] === value || board[i][col] === value) {
+        return false;
+      }
     }
+    const boxRowStart = Math.floor(row / sRows) * sRows;
+    const boxColStart = Math.floor(col / sCols) * sCols;
+    for (let r = boxRowStart; r < boxRowStart + sRows; r++) {
+      for (let c = boxColStart; c < boxColStart + sCols; c++) {
+        if (board[r][c] === value) {
+          return false;
+        }
+      }
+    }
+    
+    return true;
+  }
 
     const solve = (board) => {
-    for (let row = 0; row < 9; row++) {
-      for (let col = 0; col < 9; col++) {
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
         if (!board[row][col]) {
           for (let num = 1; num <= 9; num++) {
             if (isValid(board, row, col, String(num))) {

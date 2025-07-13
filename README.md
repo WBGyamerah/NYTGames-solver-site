@@ -14,4 +14,5 @@ https://icons8.com/icon/Yk8IaKHvWIND/box LetterBoxed logo
 https://icons8.com/icon/Nwd9HmGAlc96/bee Spelling Bee logo
 https://icons8.com/icon/60598/data-grid Wordle logo
 https://icons8.com/icon/113694/sudoku Strands logo
+https://icons8.com/icon/20980/clear-symbol" Backspace Icon
 

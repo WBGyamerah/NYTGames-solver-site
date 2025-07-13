@@ -1,11 +1,19 @@
-import React from "react";
-import { useTheme } from "@mui/material/styles";
-import WordleGrid from "../../../components/game components/wordle/WordleGrid";
+import React, { useRef } from "react";
+import WordleGrid from "../../../components/game components/wordle/WordleGrid.js";
+import KeyBoard from "../../../components/game components/wordle/KeyBoard.js";
 
 const WordlePage = () => {
-    const theme = useTheme();
+  const gridRef = useRef();
+  
+  const handleKeyClick = (letter) => {
+    gridRef.current?.insertValue(letter);
+  };
+
     return (
-        <WordleGrid/>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+        <WordleGrid ref={gridRef}/>
+        <KeyBoard onKeyClick={handleKeyClick}/> 
+    </div> 
     );
 }
 
