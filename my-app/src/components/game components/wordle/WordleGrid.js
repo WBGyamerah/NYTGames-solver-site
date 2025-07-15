@@ -71,7 +71,9 @@ const WordleGrid = forwardRef((props, ref) => {
         if (e.key === 'Enter') {
             if (activeCol === cols) {
                 const nextRow = activeRow + 1;
-                //Method to pass word and colours to solver
+                const lettersGuessed = [...grid[activeRow]];
+                const lettersColours = [...colours[activeRow]];
+                props.keyBoardRef.current?.colourKeys(lettersGuessed, lettersColours);
                 setActiveRow(prev => nextRow);
                 setActiveCol(0)
             }

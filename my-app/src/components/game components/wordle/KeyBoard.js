@@ -1,6 +1,7 @@
-import React from "react";
+import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { styled } from '@mui/material/styles';
 import backspaceIcon from '../../../assets/BackspaceIcon.png';
+import { useTheme } from "@mui/material";
 
 const KeyBoardStyle = styled('div')({
     display: 'flex',
@@ -28,15 +29,44 @@ const KeyButton = styled('button')(({ theme }) => ({
     minWidth: '45px',
 }));
 
-const KeyBoard = ({ onKeyClick }) => {
+const KeyBoard = forwardRef(({onKeyClick}, ref) => {
+    const theme = useTheme();
     const letters = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M'];
+    const [keyColours, setKeyColours] = useState({});
+    const keyColour = {
+        gray: theme.custom.wordle.gray,
+        yellow: theme.custom.wordle.yellow,
+        green: theme.custom.wordle.green,
+    };
 
+    useImperativeHandle(ref, () => ({
+        colourKeys: (letters, colours) => {
+            const tempKeyColours = {...keyColours};
+
+            letters.forEach((letter, i) => {
+                const colour = colours[i];
+
+                if(tempKeyColours[letter] === 'green' || (tempKeyColours[letter] === 'yellow' && colour === 'gray')){
+                    return;
+                }
+
+                tempKeyColours[letter] = colour;
+            });
+            setKeyColours(tempKeyColours);
+        },
+    }))
     return (
         <KeyBoardStyle>
             {letters.map(letter => {
              const specialButton = letter === 'ENTER';
              return ( 
-                <KeyButton key={letter} onClick={() => onKeyClick(letter)} style={{ width: specialButton ? '70px' : '45px', fontSize: specialButton ? '12.5px' : '20px' }}>
+                <KeyButton key={letter} onClick={() => onKeyClick(letter)} 
+                style={{ 
+                    width: specialButton ? '70px' : '45px', 
+                    fontSize: specialButton ? '12.5px' : '20px',
+                    backgroundColor: keyColours[letter] ? keyColour[keyColours[letter]] : theme.custom.wordle.keyPad,
+                    color: keyColours[letter] ? theme.palette.primary.main : theme.palette.primary.contrastText,
+                    }}>
                     {letter}
                 </KeyButton>
             )})}
@@ -45,6 +75,6 @@ const KeyBoard = ({ onKeyClick }) => {
             </KeyButton>
         </KeyBoardStyle>
     );
-};
+});
 
- export default KeyBoard;
+export default KeyBoard;

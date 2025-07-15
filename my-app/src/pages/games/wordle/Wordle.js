@@ -4,17 +4,18 @@ import KeyBoard from "../../../components/game components/wordle/KeyBoard.js";
 
 const WordlePage = () => {
   const gridRef = useRef();
+  const keyBoardRef = useRef();
   
   const handleKeyClick = (letter) => {
     gridRef.current?.insertValue(letter);
   };
-
-    return (
+  
+  return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
-        <WordleGrid ref={gridRef}/>
-        <KeyBoard onKeyClick={handleKeyClick}/> 
+        <WordleGrid ref={gridRef} keyBoardRef={keyBoardRef}/>
+        <KeyBoard ref={keyBoardRef} onKeyClick={handleKeyClick}/> 
     </div> 
-    );
+  );
 }
 
 export default WordlePage;
