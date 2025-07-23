@@ -3,17 +3,12 @@
 //The New York Times uses a custom cheltenham font, so I used a similar looking font Della Respira
 import { createTheme } from '@mui/material/styles';
 
-const theme =  createTheme({
-  palette: {
-    primary: {
-      main: '#FFF',
-      contrastText: '#333',
-    },
-    text: {
-      secondary: '#959595',
-    },
-  },
+export const sharedTheme =  createTheme({
   custom:{
+    fixed: {
+      black: '#333',
+      white: '#FFF',
+    },
     games: {
       wordle: '#E3E3E1',
       letterBoxed: '#FC716B',
@@ -25,7 +20,7 @@ const theme =  createTheme({
       border: '#DCDCDC',
       hover: '#FAFAFA',
       menuHover: '#4C4C4C',
-      spellingBeeHex: '#E7E7E7',
+      toggleTrack: '#E3E3E1',
     },
     sudoku: {
       border: '#979797',
@@ -70,4 +65,47 @@ const theme =  createTheme({
   },
 });
 
-export default theme;
+export const lightTheme =  createTheme({
+  ...sharedTheme,
+  palette: {
+    primary: {
+      main: '#FFF',
+      contrastText: '#333',
+    },
+    text: {
+      secondary: '#959595',
+    },
+    background: {
+      default: '#FFF',
+    },
+  },
+});
+
+export const darkTheme =  createTheme({
+  ...sharedTheme,
+  palette: {
+    primary: {
+      main: '#121213',
+      contrastText: '#FFF',
+    },
+    text: {
+      secondary: '#959595',
+    },
+    background: {
+      default: '#121213',
+    },
+  },
+  custom: {
+    ...sharedTheme.custom,
+    grays: {
+      ...sharedTheme.custom.grays,
+      border: '#333',
+      hover: '#444', 
+      menuHover: '#EEE'
+    },
+    sudoku: {
+      ...sharedTheme.custom.sudoku,
+      filled: '#818384',
+    },
+  },
+});

@@ -1,7 +1,7 @@
 // I used the code fom https://stackoverflow.com/questions/23497444/how-to-make-a-sudoku-grid-using-html-and-css and adpted it to react
-import React, { useState, useImperativeHandle, forwardRef } from "react";
+import React, { useState, useImperativeHandle, forwardRef, useEffect } from "react";
 import { styled } from '@mui/material/styles';
-import { Table, TableBody, TableCell, TableContainer, TableRow, TextField } from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableRow, TextField, useTheme } from "@mui/material";
 import { solveBoard } from "./SudokuSolver";
 
 const Board = styled(Table)(({theme}) => ({
@@ -33,6 +33,7 @@ const Cell = styled(TableCell)(({ theme, row, col, input, cell, sameRow, sameCol
     borderLeft: col % 3 === 0 && col !== 0 ? `8px solid ${theme.custom.sudoku.border}` : `2px solid ${theme.custom.sudoku.border}`,
     borderBottom: (row + 1) % 3 === 0 && row !== 8 ? `8px solid ${theme.custom.sudoku.border}` : `2px solid ${theme.custom.sudoku.border}`,
     backgroundColor,
+    color: theme.palette.primary.contrastText,
   };
 });
 
@@ -62,6 +63,7 @@ const Warning = styled('div')(({theme}) => ({
 }));
 
 const SudokuBoard = forwardRef((props, ref) => {
+    const theme = useTheme();
     const rows = 9;
     const cols = 9;
     const sRows = 3; //stores the nu7mber of rows in the mini square
@@ -70,6 +72,31 @@ const SudokuBoard = forwardRef((props, ref) => {
     const [userInput, setUserInput] = useState(Array(rows).fill(null).map(() => Array(cols).fill(false))); //Stores whether a cell is user input or not, used to change cell colour
     const [errors, setErrors] = useState(Array(rows).fill(null).map(() => Array(cols).fill(false)));
     const [selectedCell, setSelectedCell] = useState({ row: null, col: null });
+
+    useEffect(() => {
+      const handleKeyDown = (e) => {
+        const key = e.key;
+        let curRow = selectedCell.row;
+        let curCol = selectedCell.col;
+        
+        if(selectedCell.row === null || selectedCell.col === null) return;
+
+        if((key === 'ArrowUp' || key === 'w') && curRow > 0){
+           setSelectedCell({row: curRow - 1, col: curCol});
+        }else if((key === 'ArrowDown' || key === 's') && curRow < 8){
+           setSelectedCell({row: curRow + 1, col: curCol});
+        }else if((key === 'ArrowLeft' || key === 'a') && curCol > 0){
+           setSelectedCell({row: curRow, col: curCol  - 1});
+        }else if((key === 'ArrowRight' || key === 'd') && curCol < 8){
+           setSelectedCell({row: curRow, col: curCol  + 1});
+        }else if(key === 'Enter' || key === 'Escape'){
+           clearSelected();
+        }
+      };
+
+      window.addEventListener('keydown', handleKeyDown);
+      return () => { window.removeEventListener('keydown', handleKeyDown); };
+    }, [selectedCell]);
 
     const handleInput = (row, col, value) => {
         const digit = value.slice(-1); //Gets the last input
@@ -87,7 +114,7 @@ const SudokuBoard = forwardRef((props, ref) => {
 
     useImperativeHandle(ref, () => ({
       insertValue: (value) => {
-        const { row, col } = selectedCell;
+        let { row, col } = selectedCell;
 
         if (value === 'S') {
           if (isErrorsEmpty(errors)) {
@@ -98,17 +125,18 @@ const SudokuBoard = forwardRef((props, ref) => {
             } else {
               alert('Unable to solve the puzzle.');
             }
+            clearSelected();
           } else {
             alert('Please fix the highlighted errors before solving.');
           }
         } else if (value === 'C') {
           clearBoard();
+          clearSelected();
         } else if (row !== null && col !== null) {
           handleInput(row, col, value);
         }
       },
     }));
-
 
     const handleCellClick = (row, col) => {
       setSelectedCell({ row, col });
@@ -163,6 +191,10 @@ const SudokuBoard = forwardRef((props, ref) => {
       setErrors(emptyErrors);
     };
 
+    const clearSelected = () => {
+      setSelectedCell({ row: null, col: null})
+    };
+
     const isErrorsEmpty = (board) => {
       return board.every(row => row.every(cell => cell === false));
     };
@@ -181,16 +213,20 @@ const SudokuBoard = forwardRef((props, ref) => {
                         input={userInput} 
                         cell={selectedCell} 
                         onClick={() => handleCellClick(rowIndex, colIndex)}
-                        sameRow={selectedCell.row === rowIndex}
-                        sameCol={selectedCell.col === colIndex}
-                        sameBox={Math.floor(selectedCell.row / sRows) === Math.floor(rowIndex / sRows) && Math.floor(selectedCell.col / sCols) === Math.floor(colIndex / sCols)}
+                        sameRow={selectedCell.row === rowIndex && selectedCell.row !==  null}
+                        sameCol={selectedCell.col === colIndex && selectedCell.row !==  null}
+                        sameBox={
+                          selectedCell.row !==  null &&
+                          selectedCell.row !==  null &&
+                          Math.floor(selectedCell.row / sRows) === Math.floor(rowIndex / sRows) && 
+                          Math.floor(selectedCell.col / sCols) === Math.floor(colIndex / sCols)}
                         sameValue={selectedCell.row !== null && selectedCell.col !== null && board[rowIndex][colIndex] === board[selectedCell.row][selectedCell.col] && board[selectedCell.row][selectedCell.col] !== ''}>
                             <InnerCell>
                               <TextField
                                   value={cell}   
-                                  onChange={(input) => handleInput(rowIndex, colIndex, input.target.value)} 
+                                  onChange={(input) => handleInput(selectedCell.row, selectedCell.col, input.target.value)} 
                                   inputProps={{
-                                  style: { textAlign: 'center', padding: '0', fontSize: '40px', fontWeight:'700', cursor: 'default', caretColor: 'transparent'}}}
+                                  style: { textAlign: 'center', padding: '0', fontSize: '40px', fontWeight:'700', cursor: 'default', caretColor: 'transparent', color: theme.palette.primary.contrastText,}}}
                                   variant="standard"
                                   fullWidth
                                   InputProps={{

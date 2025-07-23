@@ -13,6 +13,10 @@ const MenuButtonStyle = styled('div')(({ theme }) => ({
     '&:hover .bar': {
         backgroundColor: theme.custom.grays.menuHover,
     },
+
+    '&:active':{
+        backgroundColor: theme.custom.grays.hover,
+    },
 }));
 
 const Bar = styled('div')(({ theme }) => ({

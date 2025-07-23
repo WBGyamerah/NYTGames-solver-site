@@ -1,8 +1,8 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle, useCallback } from 'react';
 import { styled } from '@mui/material/styles';
 import { Grid, TextField } from '@mui/material';
-import { keyframes } from '@mui/system';
-import theme from '../../../theme/theme';
+import { keyframes, useTheme } from '@mui/system';
+import { sharedTheme } from '../../../theme/theme.js';
 
 const pop = keyframes`
   0% { transform: scale(1); }
@@ -17,9 +17,9 @@ const flip = keyframes`
 `;
 
 const cellColours = {
-    gray: theme.custom.wordle.gray,
-    yellow: theme.custom.wordle.yellow,
-    green: theme.custom.wordle.green,
+    gray: sharedTheme.custom.wordle.gray,
+    yellow: sharedTheme.custom.wordle.yellow,
+    green: sharedTheme.custom.wordle.green,
 };
 
 const Cell = styled('div')(({theme, filled, clicked, colour}) => ({
@@ -33,6 +33,7 @@ const Cell = styled('div')(({theme, filled, clicked, colour}) => ({
 }));
 
 const WordleGrid = forwardRef((props, ref) => {
+    const theme = useTheme();
     const rows = 6;
     const cols = 5;
     const [grid, setGrid] = useState(Array(rows).fill().map(() => Array(cols).fill("")));
@@ -58,7 +59,7 @@ const WordleGrid = forwardRef((props, ref) => {
                 setActiveCol(prev => prev + 1);
             }
         }
-        if (e.key === 'Backspace') {
+        if (key === 'Backspace') {
             if (activeCol > 0) {
                 const prevCol = activeCol - 1;
                 handleInput(activeRow, prevCol, '');
@@ -68,7 +69,7 @@ const WordleGrid = forwardRef((props, ref) => {
                 setColours(updatedColours);
             }
         }
-        if (e.key === 'Enter') {
+        if (key === 'Enter') {
             if (activeCol === cols) {
                 const nextRow = activeRow + 1;
                 const lettersGuessed = [...grid[activeRow]];

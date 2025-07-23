@@ -1,6 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { styled } from '@mui/material/styles';
-import backspaceIcon from '../../../assets/BackspaceIcon.png';
+import backspaceIcon from '../../../assets/component icons/BackspaceIcon.png';
 import { useTheme } from "@mui/material";
 
 const KeyBoardStyle = styled('div')({

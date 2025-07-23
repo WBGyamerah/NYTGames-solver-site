@@ -27,7 +27,7 @@ const NumberPadButton = styled('button')(({ theme }) => ({
     minWidth: '80px',
 
     '&:active': {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.custom.fixed.white,
     },
 }));
 

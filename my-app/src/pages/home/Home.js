@@ -1,11 +1,11 @@
 import React from "react";
 import GamesCardList from "../../components/card/GamesCardList.js";
 import { useTheme } from "@mui/material/styles";
-import spellingbeeIcon from '../../assets/logos/Spelling Bee Logo.png';
-import wordleIcon from '../../assets/logos/Wordle Logo.png';
-import letterboxedIcon from '../../assets/logos/LetterBoxed Logo.svg';
-import sudokuIcon from '../../assets/logos/Sudoku Logo.png';
-import strandsIcon from '../../assets/logos/Strands Logo.png';
+import spellingbeeIcon from '../../assets/logos/spellingbee/Spelling Bee Logo.png';
+import wordleIcon from '../../assets/logos/wordle/Wordle Logo.png';
+import letterboxedIcon from '../../assets/logos/letterboxed/LetterBoxed Logo.svg';
+import sudokuIcon from '../../assets/logos/sudoku/Sudoku Logo.png';
+import strandsIcon from '../../assets/logos/strands/Strands Logo.png';
 
 const HomePage = () => {
     const theme = useTheme();
@@ -57,7 +57,7 @@ const HomePage = () => {
 
     return (
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-            <GamesCardList GamesCards={gameCards} />
+            <GamesCardList GamesCards={gameCards}/>
         </div>
     );
 }

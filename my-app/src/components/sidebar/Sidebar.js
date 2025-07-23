@@ -1,12 +1,16 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { Typography } from "@mui/material";
-import spellingbeeIcon from '../../assets/logos/Spelling Bee Logo.png';
-import wordleIcon from '../../assets/logos/Wordle Logo.png';
-import letterboxedIcon from '../../assets/logos/LetterBoxed Logo.svg';
-import { useTheme } from "@mui/material";
-import sudokuIcon from '../../assets/logos/Sudoku Logo.png';
-import strandsIcon from '../../assets/logos/Strands Logo.png';
+import lightModeSBIcon from '../../assets/logos/spellingbee/Spelling Bee Logo.png';
+import darkModeSBIcon from '../../assets/logos/spellingbee/DM Spelling Bee Logo.png';
+import lightModeWIcon from '../../assets/logos/wordle/Wordle Logo.png';
+import darkModeWIcon from '../../assets/logos/wordle/DM Wordle Logo.png';
+import lightModeLBIcon from '../../assets/logos/letterboxed/LetterBoxed Logo.svg';
+import darkModeLBIcon from '../../assets/logos/letterboxed/DM LetterBoxed Logo.svg';
+import lightModeSIcon from '../../assets/logos/sudoku/Sudoku Logo.png';
+import darkModeSIcon from '../../assets/logos/sudoku/DM Sudoku Logo.png';
+import lightModeSTIcon from '../../assets/logos/strands/Strands Logo.png';
+import darkModeSTIcon from '../../assets/logos/strands/DM Strands Logo.png';
 
 const SidebarStyle = styled('div')(({ theme, isOpen }) => ({
     position: 'fixed',
@@ -26,7 +30,7 @@ const SidebarItems = styled("div")({
 
 const Items = styled('a')(({ theme, gameColour }) => ({
     textDecoration: 'none', 
-    color: 'inherit',
+    color: theme.palette.primary.contrastText,
     display: 'flex',
     alignItems: 'center', 
     gap: '8px',
@@ -53,12 +57,17 @@ const Items = styled('a')(({ theme, gameColour }) => ({
     },
 }));
 
-const Sidebar = ({ isOpen }) => {
+const Sidebar = ({ isOpen, isDarkMode }) => {
     const theme = useTheme();
+    const spellingbeeIcon = isDarkMode ? darkModeSBIcon : lightModeSBIcon;
+    const wordleIcon = isDarkMode ? darkModeWIcon : lightModeWIcon;
+    const letterboxedIcon = isDarkMode ? darkModeLBIcon : lightModeLBIcon;
+    const strandsIcon = isDarkMode ? darkModeSTIcon : lightModeSTIcon;
+    const sudokuIcon = isDarkMode ? darkModeSIcon : lightModeSIcon;
     
     return(
         <SidebarStyle isOpen={isOpen}>
-            <Typography variant='sidebar' style={{fontSize:'12px', paddingLeft:'15px'}}>NEW YORK TIMES SOLVER</Typography>
+            <Typography variant='sidebar' style={{fontSize:'12px', paddingLeft:'15px', color: theme.palette.primary.contrastText}}>NEW YORK TIMES SOLVER</Typography>
             <SidebarItems>
                 <Items href = "/SpellingBee" gameColour={theme.custom.games.spellingBee} style={{paddingLeft:'18px'}}>
                     <img src={spellingbeeIcon} alt='SpellingBee' style={{ width: '20px', height: '20px' }}></img>
