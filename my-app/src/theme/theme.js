@@ -35,6 +35,7 @@ export const sharedTheme =  createTheme({
       yellow: '#C9B458',
       green: '#6AAA64',
       keyPad: '#D3D6DA',
+      cellBorder: '#D3D6DA',
     }
   },
   typography: {
@@ -99,13 +100,20 @@ export const darkTheme =  createTheme({
     ...sharedTheme.custom,
     grays: {
       ...sharedTheme.custom.grays,
-      border: '#333',
+      border: '#424242',
       hover: '#444', 
       menuHover: '#EEE'
     },
     sudoku: {
       ...sharedTheme.custom.sudoku,
       filled: '#818384',
+    },
+    wordle: {
+      ...sharedTheme.custom.wordle,
+      filled: '#565758',
+      gray: '#3A3A3C',
+      keyPad: '#818384',
+      cellBorder: '#3A3A3C',
     },
   },
 });

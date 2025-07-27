@@ -1,20 +1,20 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { styled } from '@mui/material/styles';
-import backspaceIcon from '../../../assets/component icons/BackspaceIcon.png';
+import lightModeBSIcon from '../../../assets/component icons/backspace/BackspaceIcon.png';
+import darkModeBSIcon from '../../../assets/component icons/backspace/DM BackspaceIcon.png';
 import { useTheme } from "@mui/material";
 
 const KeyBoardStyle = styled('div')({
     display: 'flex',
     flexWrap: 'wrap',
-    gap: '8px',
+    gap: '6px',
     justifyContent: 'center',
-    paddingTop: '10px',
-    maxWidth: '540px', 
+    paddingTop: '12px',
+    maxWidth: '490px', 
 });
 
 const KeyButton = styled('button')(({ theme }) => ({
     height: '60px',
-    width: '45px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -26,10 +26,10 @@ const KeyButton = styled('button')(({ theme }) => ({
     fontWeight: '700',
     fontSize: '20px',
     cursor: 'pointer',
-    minWidth: '45px',
+    minWidth: '40px',
 }));
 
-const KeyBoard = forwardRef(({onKeyClick}, ref) => {
+const KeyBoard = forwardRef(({onKeyClick, isDarkMode}, ref) => {
     const theme = useTheme();
     const letters = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M'];
     const [keyColours, setKeyColours] = useState({});
@@ -38,6 +38,7 @@ const KeyBoard = forwardRef(({onKeyClick}, ref) => {
         yellow: theme.custom.wordle.yellow,
         green: theme.custom.wordle.green,
     };
+    const backspaceIcon = isDarkMode ? darkModeBSIcon: lightModeBSIcon;
 
     useImperativeHandle(ref, () => ({
         colourKeys: (letters, colours) => {
@@ -60,9 +61,9 @@ const KeyBoard = forwardRef(({onKeyClick}, ref) => {
             {letters.map(letter => {
              const specialButton = letter === 'ENTER';
              return ( 
-                <KeyButton key={letter} onClick={() => onKeyClick(letter)} 
+                <KeyButton onClick={() => onKeyClick(letter)} 
                 style={{ 
-                    width: specialButton ? '70px' : '45px', 
+                    width: specialButton ? '70px' : '42px', 
                     fontSize: specialButton ? '12.5px' : '20px',
                     backgroundColor: keyColours[letter] ? keyColour[keyColours[letter]] : theme.custom.wordle.keyPad,
                     color: keyColours[letter] ? theme.palette.primary.main : theme.palette.primary.contrastText,
@@ -70,7 +71,7 @@ const KeyBoard = forwardRef(({onKeyClick}, ref) => {
                     {letter}
                 </KeyButton>
             )})}
-            <KeyButton key={'BACKSPACE'} onClick={() => onKeyClick('BACKSPACE')} style={{ width: '70px' }}>
+            <KeyButton onClick={() => onKeyClick('BACKSPACE')} style={{ width: '70px' }}>
                 <img src={backspaceIcon} alt={'backspace'} style={{ width: '32px', height: '32px' }}></img>
             </KeyButton>
         </KeyBoardStyle>

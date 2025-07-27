@@ -22,11 +22,11 @@ const cellColours = {
     green: sharedTheme.custom.wordle.green,
 };
 
-const Cell = styled('div')(({theme, filled, clicked, colour}) => ({
-    border: filled ? colour !== '' ? `2px solid ${cellColours[colour]}` : `2px solid ${theme.custom.wordle.filled}`: `2px solid ${theme.custom.grays.border}`,
+const Cell = styled('div')(({theme, filled, colour}) => ({
+    border: filled ? colour !== '' ? `2px solid ${cellColours[colour]}` : `2px solid ${theme.custom.wordle.filled}`: `2px solid ${theme.custom.wordle.cellBorder}`,
     backgroundColor: filled ? cellColours[colour] : theme.palette.primary.main,
-    width: '50px', 
-    height: '50px',
+    width: '52px', 
+    height: '52px',
     alignItems: 'center',
     justifyContent: 'center',
     animation: filled && colour !== '' ? `${flip} 500ms ease`: filled ? `${pop} 150ms ease` : 'none',
@@ -123,9 +123,9 @@ const WordleGrid = forwardRef((props, ref) => {
 
 
     return (
-        <Grid container spacing={0.5} justifyContent='center' alignItems='center' paddingTop={'12px'}>
+        <Grid container spacing={0.6} justifyContent='center' alignItems='center' paddingTop={'12px'}>
             {Array(rows).fill().map((_, rowIndex) => (
-            <Grid container item key={rowIndex} spacing={0.5} justifyContent='center'>
+            <Grid container item key={rowIndex} spacing={0.6} justifyContent='center'>
                 {Array(cols).fill().map((_, colIndex) => (
                 <Grid item key={colIndex}>
                     <Cell
@@ -139,7 +139,7 @@ const WordleGrid = forwardRef((props, ref) => {
                          value={grid[rowIndex][colIndex]}
                          inputProps={{
                           style: { textAlign: 'center', padding: '0', lineHeight: '50px', fontSize: '35px', fontFamily: 'Arial, sans-serif', fontWeight:'700', cursor: 'default', caretColor: 'transparent',
-                           color: colours[rowIndex][colIndex] !== '' ? theme.palette.primary.main : theme.palette.primary.contrastText,
+                           color: colours[rowIndex][colIndex] !== '' ? sharedTheme.custom.fixed.white :  theme.palette.primary.contrastText,
                          }}}
                          variant="standard"
                          fullWidth

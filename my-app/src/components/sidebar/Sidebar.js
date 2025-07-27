@@ -20,7 +20,7 @@ const SidebarStyle = styled('div')(({ theme, isOpen }) => ({
     zIndex: '10',
     transform: isOpen ? 'translateX(0)' : 'translateX(-100%)',
     transition: 'transform 0.3s ease',
-    boxShadow: `4px 0px 5px ${theme.custom.grays.border}`,
+    boxShadow: isOpen ?`2px 0px 3px ${theme.custom.grays.border}` : '',
 }));
 
 const SidebarItems = styled("div")({
@@ -51,7 +51,7 @@ const Items = styled('a')(({ theme, gameColour }) => ({
         width: '0px',
         backgroundColor: gameColour,
     },
-
+    
     '&:hover::before':{
         width: '6px'
     },
