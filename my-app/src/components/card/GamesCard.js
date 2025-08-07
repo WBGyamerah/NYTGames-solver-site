@@ -13,7 +13,7 @@ const CardStyle = styled(Card)(({ theme }) => ({
     height: "335px",   
 }));
 
-const CardHeader = styled('div')(({ headercolour }) => ({ //I couldn't centre the icon or text using MUI CardHeader
+const CardHeader = styled('div')(({ theme, headercolour }) => ({ //I couldn't centre the icon or text using MUI CardHeader
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -22,6 +22,7 @@ const CardHeader = styled('div')(({ headercolour }) => ({ //I couldn't centre th
     cursor: 'pointer',
     height: '194px',
     backgroundColor: headercolour,
+    color: theme.custom.fixed.black,
 }));
 
 const GamesCard = ({ link, headerColour, imglink, icon, title, desc }) => {

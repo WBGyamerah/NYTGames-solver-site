@@ -35,7 +35,7 @@ function App() {
   return (
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
       <CssBaseline/>
-      <Layout onToggleTheme={toggleTheme} isDarkMode={isDarkMode}>
+      <Layout onToggleTheme={toggleTheme}>
         <Routes>
           <Route path='/' element={<HomePage/>}/>
           <Route path="/Wordle" element={<WordlePage/>}/>

@@ -3,6 +3,7 @@ import LightModeNYTlogo from '../../assets/logos/nyt/NYT Logo.svg'
 import DarkModeNYTlogo from '../../assets/logos/nyt/DarkModeNYTLogo.svg'
 import MenuButton from "../buttons/menu button/MenuButton.js";
 import ThemeToggle from "../buttons/ThemeToggle.js";
+import Divider from "../misc/Divider.js";
 import { styled, useTheme } from '@mui/material/styles';
 import { Tooltip, Typography } from "@mui/material";
 //CSS found and copied from the website
@@ -28,22 +29,15 @@ const Title = styled('a')({
     textDecoration: 'none',
 });
 
-const Divider = styled('div')(({ theme }) => ({
-  width: '1.5px',
-  height: '28px',
-  backgroundColor: theme.palette.text.secondary,
-  marginRight: '5px',
-}));
-
 const RightSide = styled('div')(({}) => ({
     marginLeft: 'auto',
     paddingRight: '12px'
 }));
 
-
 const Header = ({ onMenuClick, onToggleTheme, isDarkMode }) => {
-    const NYTlogo = isDarkMode ? DarkModeNYTlogo : LightModeNYTlogo;
     const theme = useTheme();
+    const isDark = theme.palette.mode === 'dark';
+    const NYTlogo = isDark ? DarkModeNYTlogo : LightModeNYTlogo;
 
     return(
         <HeaderStyle>
@@ -56,7 +50,7 @@ const Header = ({ onMenuClick, onToggleTheme, isDarkMode }) => {
                 <Typography variant="h1" style={{color: theme.palette.primary.contrastText}}>Solver</Typography>
             </Title>
             <RightSide>
-                <ThemeToggle onClick={onToggleTheme} isDarkMode={isDarkMode}/>
+                <ThemeToggle onClick={onToggleTheme}/>
             </RightSide>
         </HeaderStyle>
     );

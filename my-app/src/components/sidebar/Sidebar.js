@@ -57,13 +57,14 @@ const Items = styled('a')(({ theme, gameColour }) => ({
     },
 }));
 
-const Sidebar = ({ isOpen, isDarkMode }) => {
+const Sidebar = ({ isOpen }) => {
     const theme = useTheme();
-    const spellingbeeIcon = isDarkMode ? darkModeSBIcon : lightModeSBIcon;
-    const wordleIcon = isDarkMode ? darkModeWIcon : lightModeWIcon;
-    const letterboxedIcon = isDarkMode ? darkModeLBIcon : lightModeLBIcon;
-    const strandsIcon = isDarkMode ? darkModeSTIcon : lightModeSTIcon;
-    const sudokuIcon = isDarkMode ? darkModeSIcon : lightModeSIcon;
+    const isDark = theme.palette.mode === 'dark';
+    const spellingbeeIcon = isDark ? darkModeSBIcon : lightModeSBIcon;
+    const wordleIcon = isDark ? darkModeWIcon : lightModeWIcon;
+    const letterboxedIcon = isDark ? darkModeLBIcon : lightModeLBIcon;
+    const strandsIcon = isDark ? darkModeSTIcon : lightModeSTIcon;
+    const sudokuIcon = isDark ? darkModeSIcon : lightModeSIcon;
     
     return(
         <SidebarStyle isOpen={isOpen}>
