@@ -69,6 +69,7 @@ export const sharedTheme =  createTheme({
 export const lightTheme =  createTheme({
   ...sharedTheme,
   palette: {
+    mode: 'light',
     primary: {
       main: '#FFF',
       contrastText: '#333',
@@ -85,6 +86,7 @@ export const lightTheme =  createTheme({
 export const darkTheme =  createTheme({
   ...sharedTheme,
   palette: {
+    mode: 'dark',
     primary: {
       main: '#121213',
       contrastText: '#FFF',

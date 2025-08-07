@@ -29,7 +29,7 @@ const KeyButton = styled('button')(({ theme }) => ({
     minWidth: '40px',
 }));
 
-const KeyBoard = forwardRef(({onKeyClick, isDarkMode}, ref) => {
+const KeyBoard = forwardRef(({onKeyClick}, ref) => {
     const theme = useTheme();
     const letters = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M'];
     const [keyColours, setKeyColours] = useState({});
@@ -38,7 +38,8 @@ const KeyBoard = forwardRef(({onKeyClick, isDarkMode}, ref) => {
         yellow: theme.custom.wordle.yellow,
         green: theme.custom.wordle.green,
     };
-    const backspaceIcon = isDarkMode ? darkModeBSIcon: lightModeBSIcon;
+    const isDark = theme.palette.mode === 'dark';
+    const backspaceIcon = isDark ? darkModeBSIcon : lightModeBSIcon;
 
     useImperativeHandle(ref, () => ({
         colourKeys: (letters, colours) => {
@@ -64,9 +65,9 @@ const KeyBoard = forwardRef(({onKeyClick, isDarkMode}, ref) => {
                 <KeyButton onClick={() => onKeyClick(letter)} 
                 style={{ 
                     width: specialButton ? '70px' : '42px', 
-                    fontSize: specialButton ? '12.5px' : '20px',
+                    fontSize: specialButton ? '13px' : '20px',
                     backgroundColor: keyColours[letter] ? keyColour[keyColours[letter]] : theme.custom.wordle.keyPad,
-                    color: keyColours[letter] ? theme.palette.primary.main : theme.palette.primary.contrastText,
+                    color: keyColours[letter] ? theme.custom.fixed.white : theme.palette.primary.contrastText,
                     }}>
                     {letter}
                 </KeyButton>

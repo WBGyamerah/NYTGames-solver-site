@@ -10,7 +10,7 @@ const Container = styled('div')({
 });
 
 
-const WordlePage = (isDarkMode) => {
+const WordlePage = () => {
   const gridRef = useRef();
   const keyBoardRef = useRef();
   const wordListRef = useRef();
@@ -23,7 +23,7 @@ const WordlePage = (isDarkMode) => {
     <Container>
         <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
           <WordleGrid ref={gridRef} keyBoardRef={keyBoardRef} wordListRef={wordListRef}/>
-          <KeyBoard ref={keyBoardRef} onKeyClick={handleKeyClick} isDarkMode={isDarkMode}/>
+          <KeyBoard ref={keyBoardRef} onKeyClick={handleKeyClick}/>
         </div>
         <WordList  ref={wordListRef} />
     </Container>

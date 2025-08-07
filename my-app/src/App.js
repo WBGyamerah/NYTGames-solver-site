@@ -38,7 +38,7 @@ function App() {
       <Layout onToggleTheme={toggleTheme} isDarkMode={isDarkMode}>
         <Routes>
           <Route path='/' element={<HomePage/>}/>
-          <Route path="/Wordle" element={<WordlePage/>} isDarkMode={isDarkMode}/>
+          <Route path="/Wordle" element={<WordlePage/>}/>
           <Route path="/SpellingBee" element={<SpellingBeePage/>}/>
           <Route path="/Sudoku" element={<SudokuPage/>}/>
         </Routes>
