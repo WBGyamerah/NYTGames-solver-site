@@ -75,6 +75,7 @@ const WordleGrid = forwardRef((props, ref) => {
                 const lettersGuessed = [...grid[activeRow]];
                 const lettersColours = [...colours[activeRow]];
                 props.keyBoardRef.current?.colourKeys(lettersGuessed, lettersColours);
+                props.wordListRef.current?.colourKeys(lettersGuessed, lettersColours);
                 setActiveRow(prev => nextRow);
                 setActiveCol(0)
             }
@@ -129,7 +130,6 @@ const WordleGrid = forwardRef((props, ref) => {
                 {Array(cols).fill().map((_, colIndex) => (
                 <Grid item key={colIndex}>
                     <Cell
-                     key={`${rowIndex}-${colIndex}-${colours[rowIndex][colIndex]}`} //Forces cell to be reloaded upon colour change as this changes the key
                      filled={!!grid[rowIndex][colIndex]}
                      colour={colours[rowIndex][colIndex]}
                      clicked={clicked[rowIndex][colIndex]}
@@ -145,7 +145,6 @@ const WordleGrid = forwardRef((props, ref) => {
                          fullWidth
                          InputProps={{
                           disableUnderline: true,
-                          lineHeight: '50px',
                          }}
                         />
                     </Cell>

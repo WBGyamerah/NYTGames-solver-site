@@ -55,7 +55,7 @@ const KeyBoard = forwardRef(({onKeyClick, isDarkMode}, ref) => {
             });
             setKeyColours(tempKeyColours);
         },
-    }))
+    }));
     return (
         <KeyBoardStyle>
             {letters.map(letter => {
