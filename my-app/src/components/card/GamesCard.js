@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import BasicButton from "../buttons/basic button/BasicButton";
 import { Card, CardContent, Typography, Tooltip } from "@mui/material";
 
-const CardStyle = styled(Card)(({ theme }) => ({
+const Container = styled(Card)(({ theme }) => ({
     borderRadius: '8px',
     border: `1.5px solid ${theme.custom.grays.border}`,
     background: theme.palette.primary.main,
@@ -18,32 +18,29 @@ const CardHeader = styled('div')(({ theme, headercolour }) => ({ //I couldn't ce
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '0',
     cursor: 'pointer',
     height: '194px',
     backgroundColor: headercolour,
     color: theme.custom.fixed.black,
 }));
 
-const GamesCard = ({ link, headerColour, imglink, icon, title, desc }) => {
-    return(
-        <CardStyle>
+const GamesCard = ({ link, headerColour, imglink, icon, title, desc }) => (
+    <Container>
+        <a href={link} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <CardHeader headercolour = {headerColour}>
+                <Tooltip title={`Logo from ${imglink}`}>
+                    <img src={icon} alt={title} style={{ width: '95px', height: '95px' }}></img>
+                </Tooltip>
+                <Typography variant="h2">{title}</Typography>
+            </CardHeader>
+        </a>
+        <CardContent>
+            <Typography variant="body1" color="text.secondary">{desc}</Typography>
             <a href={link} style={{ textDecoration: 'none', color: 'inherit' }}>
-                <CardHeader headercolour = {headerColour}>
-                    <Tooltip title={`Logo from ${imglink}`}>
-                        <img src={icon} alt={title} style={{ width: '95px', height: '95px' }}></img>
-                    </Tooltip>
-                    <Typography variant="h2">{title}</Typography>
-                </CardHeader>
+                <BasicButton>Solve</BasicButton >
             </a>
-            <CardContent>
-                <Typography variant="body1" color="text.secondary">{desc}</Typography>
-                <a href={link} style={{ textDecoration: 'none', color: 'inherit' }}>
-                    <BasicButton>Solve</BasicButton >
-                </a>
-            </CardContent>
-        </CardStyle>
-    );
-}
+        </CardContent>
+    </Container>
+);
 
 export default GamesCard;

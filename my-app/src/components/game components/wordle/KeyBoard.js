@@ -4,7 +4,7 @@ import lightModeBSIcon from '../../../assets/component icons/backspace/Backspace
 import darkModeBSIcon from '../../../assets/component icons/backspace/DM BackspaceIcon.png';
 import { useTheme } from "@mui/material";
 
-const KeyBoardStyle = styled('div')({
+const Container = styled('div')({
     display: 'flex',
     flexWrap: 'wrap',
     gap: '6px',
@@ -58,7 +58,7 @@ const KeyBoard = forwardRef(({onKeyClick}, ref) => {
         },
     }));
     return (
-        <KeyBoardStyle>
+        <Container>
             {letters.map(letter => {
              const specialButton = letter === 'ENTER';
              return ( 
@@ -75,7 +75,7 @@ const KeyBoard = forwardRef(({onKeyClick}, ref) => {
             <KeyButton onClick={() => onKeyClick('BACKSPACE')} style={{ width: '70px' }}>
                 <img src={backspaceIcon} alt={'backspace'} style={{ width: '32px', height: '32px' }}></img>
             </KeyButton>
-        </KeyBoardStyle>
+        </Container>
     );
 });
 

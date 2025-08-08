@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from '@mui/material/styles';
 //CSS found and copied from the website
 
-const BasicButtonStyle = styled('button')(({ theme }) => ({
+const Container = styled('button')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -17,19 +17,17 @@ const BasicButtonStyle = styled('button')(({ theme }) => ({
   letterSpacing: '.25px',
   fontWeight: '700',
   cursor: 'pointer',
-  transition: 'background-color 0.2s ease',
 
   '&:hover': {
     backgroundColor: theme.custom.grays.hover,
+    transition: 'background-color 0.2s ease',
   },
 }));
 
-const BasicButton = ({ children, onClick }) => {
-    return(
-     <BasicButtonStyle onClick={onClick}>
-        {children}
-     </BasicButtonStyle>
-    );
-}
+const BasicButton = ({ children, onClick }) => (
+  <Container onClick={onClick}>
+    {children}
+  </Container>
+);
 
 export default BasicButton;

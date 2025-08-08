@@ -66,8 +66,8 @@ const SudokuBoard = forwardRef((props, ref) => {
     const theme = useTheme();
     const rows = 9;
     const cols = 9;
-    const sRows = 3; //stores the nu7mber of rows in the mini square
-    const sCols = 3; //stores the nu7mber of cols in the mini square
+    const sRows = 3; //stores the number of rows in the mini square
+    const sCols = 3; //stores the number of cols in the mini square
     const [board, setBoard] = useState(Array(rows).fill(null).map(() => Array(cols).fill(''))); //Creates an empty 9x9 2d array
     const [userInput, setUserInput] = useState(Array(rows).fill(null).map(() => Array(cols).fill(false))); //Stores whether a cell is user input or not, used to change cell colour
     const [errors, setErrors] = useState(Array(rows).fill(null).map(() => Array(cols).fill(false)));
@@ -142,7 +142,7 @@ const SudokuBoard = forwardRef((props, ref) => {
       setSelectedCell({ row, col });
     };
 
-    const getErrors = (board) => { //Loops through th whole board to highlight errors
+    const getErrors = (board) => { //Loops through the whole board to highlight errors
       const tempErrors = Array(rows).fill(null).map(() => Array(cols).fill(false)); 
       
       for(let row = 0; row < rows; row++){
@@ -217,7 +217,7 @@ const SudokuBoard = forwardRef((props, ref) => {
                         sameCol={selectedCell.col === colIndex && selectedCell.row !==  null}
                         sameBox={
                           selectedCell.row !==  null &&
-                          selectedCell.row !==  null &&
+                          selectedCell.col !==  null &&
                           Math.floor(selectedCell.row / sRows) === Math.floor(rowIndex / sRows) && 
                           Math.floor(selectedCell.col / sCols) === Math.floor(colIndex / sCols)}
                         sameValue={selectedCell.row !== null && selectedCell.col !== null && board[rowIndex][colIndex] === board[selectedCell.row][selectedCell.col] && board[selectedCell.row][selectedCell.col] !== ''}>

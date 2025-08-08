@@ -5,6 +5,7 @@ export function solveBoard(board){
   const cols = 9;
   const sRows = 3; //stores the number of rows in the mini square
   const sCols = 3; //stores the number of cols in the mini square
+  
   const isValid = (board, row, col, value) => {
     for (let i = 0; i < boardSize; i++) {
       if (board[row][i] === value || board[i][col] === value) {
@@ -19,12 +20,11 @@ export function solveBoard(board){
           return false;
         }
       }
-    }
-    
+    }   
     return true;
-  }
+  };
 
-    const solve = (board) => {
+  const solve = (board) => {
     for (let row = 0; row < rows; row++) {
       for (let col = 0; col < cols; col++) {
         if (!board[row][col]) {

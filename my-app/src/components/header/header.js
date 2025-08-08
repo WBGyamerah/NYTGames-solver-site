@@ -2,7 +2,7 @@ import React from "react";
 import LightModeNYTlogo from '../../assets/logos/nyt/NYT Logo.svg'
 import DarkModeNYTlogo from '../../assets/logos/nyt/DarkModeNYTLogo.svg'
 import MenuButton from "../buttons/menu button/MenuButton.js";
-import ThemeToggle from "../buttons/ThemeToggle.js";
+import ThemeToggle from "../buttons/toggle button/theme toggle/ThemeToggle.js";
 import Divider from "../misc/Divider.js";
 import { styled, useTheme } from '@mui/material/styles';
 import { Tooltip, Typography } from "@mui/material";
@@ -29,12 +29,12 @@ const Title = styled('a')({
     textDecoration: 'none',
 });
 
-const RightSide = styled('div')(({}) => ({
+const RightSide = styled('div')({
     marginLeft: 'auto',
     paddingRight: '12px'
-}));
+});
 
-const Header = ({ onMenuClick, onToggleTheme, isDarkMode }) => {
+const Header = ({ onMenuClick, onToggleTheme }) => {
     const theme = useTheme();
     const isDark = theme.palette.mode === 'dark';
     const NYTlogo = isDark ? DarkModeNYTlogo : LightModeNYTlogo;

@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from '@mui/material/styles';
 
-const NumberPadStyle = styled('div')({
+const Container = styled('div')({
     display: 'flex',
     flexWrap: 'wrap',
     gap: '14px',
@@ -35,7 +35,7 @@ const NumberPad = ({ onPadClick }) => {
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
     return (
-        <NumberPadStyle>
+        <Container>
             {numbers.map(number => (
                 <NumberPadButton key={number} onClick={() => onPadClick(String(number))}>
                     {number}
@@ -43,7 +43,7 @@ const NumberPad = ({ onPadClick }) => {
             ))}
             <NumberPadButton style={{width:'128px'}} key={'C'} onClick={() => onPadClick(String('C'))}>Clear</NumberPadButton>
             <NumberPadButton style={{width:'128px'}} key={'S'} onClick={() => onPadClick(String('S'))}>Solve</NumberPadButton>
-        </NumberPadStyle>
+        </Container>
     );
 };
 

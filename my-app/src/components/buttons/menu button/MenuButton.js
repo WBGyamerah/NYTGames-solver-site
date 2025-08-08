@@ -1,12 +1,36 @@
-import React, { useState } from "react";
-import { styled } from '@mui/material/styles';
+import React, { useState, useRef } from "react";
+import { keyframes, styled } from '@mui/material/styles';
 
-const MenuButtonStyle = styled('div')(({ theme }) => ({
+const openMenu1 = keyframes`
+  0%   { transform: translateY(0) rotate(0deg); }
+  50%  { transform: translateY(7px) rotate(0deg); }
+  100% { transform: translateY(7px) rotate(-45deg); }
+`;
+
+const openMenu2 = keyframes`
+  0%   { transform: translateY(0) rotate(0deg); }
+  50%  { transform: translateY(-7px) rotate(0deg); }
+  100% { transform: translateY(-7px) rotate(45deg); }
+`;
+
+const closeMenu1 = keyframes`
+  0%   { transform: translateY(7px) rotate(-45deg); }
+  50%  { transform: translateY(7px) rotate(0deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+`;
+
+const closeMenu2 = keyframes`
+  0%   { transform: translateY(-7px) rotate(45deg); }
+  50%  { transform: translateY(-7px) rotate(0deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+`;
+
+const Container = styled('div')(({ theme }) => ({
+    height: '100%',
     display: 'inline-block',
     alignContent: 'center',
     backgroundColor: theme.palette.primary.main,
     cursor: 'pointer',
-    height: '100%',
     paddingLeft: '15px',
     paddingRight: '15px',
 
@@ -19,29 +43,32 @@ const MenuButtonStyle = styled('div')(({ theme }) => ({
     },
 }));
 
-const Bar = styled('div')(({ theme }) => ({
+const Bar = styled('div')(({ theme, animation }) => ({
     width: '20px',
     height: '3px',
     backgroundColor: theme.palette.primary.contrastText,
     margin: '4px',
     borderRadius: '8px',
-    transition: 'transform 0.2s ease, opacity 0.1s ease',
+    animation: animation,
+    animationFillMode: 'forwards'
 }));
 
 const MenuButton = ({ onClick }) => {
     const [isOpen, setIsOpen] = useState(false);
+    let clicked = useRef(false); // to prevent animation on loading, value needs to persist between renders
 
     const handleClick = () => {
-        setIsOpen(!isOpen);
+        clicked.current = true;
+        setIsOpen(prev => !prev);
         if (onClick) onClick();
     };
 
     return(
-     <MenuButtonStyle onClick={handleClick}>
-        <Bar className="bar bar1" sx={{ transform: isOpen ? 'translateY(7px) rotate(-45deg)' : 'none'}}/>
-        <Bar className="bar bar2" sx={{ opacity: isOpen ? 0 : 1 }}/>
-        <Bar className="bar bar3" sx={{ transform: isOpen ? 'translateY(-7px) rotate(45deg)' : 'none'}}/>
-     </MenuButtonStyle>
+     <Container onClick={handleClick}>
+        <Bar animation={clicked.current ? isOpen ? `${openMenu1} 0.4s ease` : `${closeMenu1} 0.4s ease` : ''}/>
+        <Bar sx={{ opacity: isOpen ? 0 : 1 }}/>
+        <Bar animation={clicked.current ? isOpen ? `${openMenu2} 0.4s ease` : `${closeMenu2} 0.4s ease` : ''}/>
+     </Container>
     );
 }
 
